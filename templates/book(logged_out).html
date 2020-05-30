@@ -1,0 +1,60 @@
+{% extends "base(logged_out).html" %}
+
+{% block title %}
+	{{ book.title }} by {{ book.author }}
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<div class="row">
+			<div class="col-4">
+				<h1 id="book-title">{{ book.title }}</h1>
+				<h4>Author: {{ book.author }}</h4>
+				<p>ISBN: {{ book.isbn }}</p>
+				<p>Published on: {{ book.year }}</p>
+				<h5>Good Reads review data</h5>
+				<p>Average rating: {{ average_rating }}</p>
+				<p>Number of ratings: {{ num_ratings }}</p>
+			</div>
+			<div class="col-4">
+			</div>
+			<div class="col-4">
+				<h3>Reviews</h3>
+				<p>Leave a review</p>
+				<form>
+					<fieldset disabled>
+						<input type="text" name="Title" placeholder="title">
+						<input type="text" name="Content" placeholder="content">
+						<label for="rating">Rate: </label>
+						<select id="rating" name="rating">
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+						</select>
+						<button class="btn btn-outline-primary">Review</button>
+					</fieldset>
+				</form>
+				<p><a href="/login">Login</a> or <a href="/register">register</a> to leave a review</p>
+				{% if reviews is none %}
+					<p>No reviews</p>
+				{% else %}
+				{% for review in reviews %}
+				<div class="card" style="width: 18rem;">
+					<div class="card-body">
+						<h5 class="card-title">{{ review.title }}</h5>
+						{% for user in users %}
+						{% if review.user_id == user.id %}
+						<h6 class="card-subtitle mb-2 text-muted">By: {{ user.username }}</h6>
+						{% endif %}
+						{% endfor %}
+						<p class="card-text">{{ review.content }}</p>
+						<p class="card-text text-muted">Rating: {{ review.rating }}/5</p>
+					</div>
+				</div>
+				{% endfor %}
+				{% endif %}
+			</div>
+	</div>
+{% endblock %}

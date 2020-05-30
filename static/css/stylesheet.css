@@ -1,0 +1,29 @@
+.nav {
+	text-align: center;
+	font-size: 22px;
+	border-bottom: solid;
+	margin-bottom:15px;
+}
+
+#main-title {
+	font-size: 60px;
+	text-align: center;
+	margin: 20px;
+}
+
+#main-searchbar{
+	text-align: center;
+}
+
+.card {
+	margin-top:10px;
+}
+
+.book {
+	margin-left:10px;
+}
+
+.book-title {
+	margin-bottom:20px;
+	font-size: 50px;
+}
